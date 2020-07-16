@@ -1,0 +1,22 @@
+<%= form_with(model: post, local: true) do |p| %>
+
+    <div class="form-group">
+        <%= p.label :title %>
+        <%= p.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= p.label :author %>
+        <%= p.text_field :author, class: "form-control"  %>
+    </div>
+
+    <div class="form-group">
+        <%= p.label :body %>
+        <%= p.text_area :body, class: "form-control", rows: 5 %>
+    </div>
+
+    <div class="actions">
+        <%= p.submit  class: "btn btn-primary", data: { disable_with: 'Criando...'} %>
+    </div>
+
+<% end %>

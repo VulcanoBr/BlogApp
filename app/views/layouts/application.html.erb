@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog Vulcano</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+  </head>
+
+  <body>
+    <div class="bg-primary text-white text-center mb-4 p-4">
+      <%= link_to root_path, class: "text-white" do %>
+        <h1 class="display-4">Blog Vulcano</h1>
+      <% end %>
+
+      <p class="lead">Ola, aqui voce encontrará artigos sobre programação, tecnologia e carreira.</p>
+
+    </div>
+
+    <div class="container">
+      <% flash.each do |type, message| %>
+        <div class='alert alert-<%= type == 'alert' ? 'danger' : 'success' %> alert-dismissible fade show' role='alert'>
+            <%= message %>
+            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+              <span aria-hidden='true'>&times;</span>
+            </button>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-4 offset-8">
+          <div class="search">
+            <%= form_with url: search_posts_path, method: :get, local: true, class: 'form-inline' do |s| %>
+              <div class="form-group mx-3 mb-3">
+                <%= s.search_field :q, class: 'form-control', required: true, placeholder: "Busca", value: params[:q] %>
+              </div>
+
+              <%= s.submit "Buscar", class: "btn btn-primary mb-3", data: { disable_with: "Buscando....." } %>
+
+
+            <% end %>
+          
+          </div>
+        </div>
+
+      </div>
+
+      <%= yield %>
+    </div>
+
+    <footer class="bg-primary text-white text-center mb-5 p-4">
+      Copyright ₢ Vulcano <%= Date.current.year %>
+    </footer>
+
+  </body>
+</html>
